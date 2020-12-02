@@ -1,14 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+
+#nullable disable
 
 namespace EFCoreTraining.Models
 {
-    public class User
+    public partial class User
     {
+        public User()
+        {
+            Tasks = new HashSet<Task>();
+        }
+
         public int Id { get; set; }
-        public UserDetails Details{ get; set; }
+        public string DetailsId { get; set; }
         public string Login { get; set; }
-        public IList<Task> Tasks { get; set; }
+
+        public virtual UserDetail Details { get; set; }
+        public virtual ICollection<Task> Tasks { get; set; }
     }
 }
