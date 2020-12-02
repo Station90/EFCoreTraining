@@ -20,11 +20,6 @@ namespace EFCoreTraining
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<User>().HasOne(x => x.Details).WithOne(x => x.User);
-            modelBuilder.Entity<User>().HasMany(x => x.Tasks).WithOne(x => x.User);
-
-
-            modelBuilder.Entity<Street>().HasMany(x => x.PostalCodes).WithMany(x => x.Streets);
         }
     }
 }
