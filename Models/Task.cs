@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-
-#nullable disable
+using System.Text;
 
 namespace EFCoreTraining.Models
 {
-    public partial class Task
+    public class Task
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int? UserId { get; set; }
-
-        public virtual User User { get; set; }
+        public User User { get; set; }
     }
 }

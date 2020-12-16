@@ -1,20 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-
-#nullable disable
+using System.Text;
 
 namespace EFCoreTraining.Models
 {
-    public partial class Street
+    public class Street
     {
-        public Street()
-        {
-            PostalCodeStreets = new HashSet<PostalCodeStreet>();
-        }
-
         public int Id { get; set; }
         public string Name { get; set; }
-
-        public virtual ICollection<PostalCodeStreet> PostalCodeStreets { get; set; }
+        public IList<PostalCode> PostalCodes { get; set; }
     }
 }
