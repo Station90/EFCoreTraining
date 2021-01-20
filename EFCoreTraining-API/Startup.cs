@@ -28,7 +28,7 @@ namespace EFCoreTraining_API
         {
             services.AddDbContext<Models.MyContext>(options => options
                 .UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
-                //.UseLazyLoadingProxies()
+                .UseLazyLoadingProxies()
                 .LogTo(Console.WriteLine, LogLevel.Information));
             services.AddScoped<Models.MyContext>();
             services.AddControllers();

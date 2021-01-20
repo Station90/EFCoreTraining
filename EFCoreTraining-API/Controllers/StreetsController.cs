@@ -25,7 +25,7 @@ namespace EFCoreTraining_API.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return context.Streets.SelectMany(x=>x.PostalCodeStreets.Select(x=>x.PostalCodes.Code)).ToList();
+            return context.Streets.TagWith("Test").SelectMany(x=>x.PostalCodeStreets.Select(x=>x.PostalCodes.Code)).Where(x=>x == "32-400").TagWith("Test2").ToList();
         }
 
         // GET api/<StreetsController>/5

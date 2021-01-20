@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 #nullable disable
 
@@ -7,15 +8,28 @@ namespace EFCoreTraining_API.Models
 {
     public partial class Street
     {
-        public Street()
+        private readonly ILazyLoader lazyLoader;
+        public Street(ILazyLoader lazyLoader)
         {
+            this.lazyLoader = lazyLoader;
             PostalCodeStreets = new HashSet<PostalCodeStreet>();
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
-        public IList<PostalCode> PostalCodes { get; set; }
+        
+        private IList<PostalCode> postalCodes;
+        public IList<PostalCode> PostalCodes 
+        {
+            get => lazyLoader.Load(this, ref postalCodes);
+            set => postalCodes = value;
+        }
 
-        public virtual ICollection<PostalCodeStreet> PostalCodeStreets { get; set; }
+        private ICollection<PostalCodeStreet> postalCodeStreets;
+        public virtual ICollection<PostalCodeStreet> PostalCodeStreets 
+        {
+            get => lazyLoader.Load(this, ref postalCodeStreets);
+            set => postalCodeStreets = value;
+        }
     }
 }
