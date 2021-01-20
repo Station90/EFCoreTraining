@@ -19,7 +19,7 @@ namespace EFCoreTraining_API.Models
         public string Name { get; set; }
         
         private IList<PostalCode> postalCodes;
-        public IList<PostalCode> PostalCodes 
+        public virtual IList<PostalCode> PostalCodes 
         {
             get => lazyLoader.Load(this, ref postalCodes);
             set => postalCodes = value;

@@ -21,7 +21,7 @@ namespace EFCoreTraining_API.Models
         
         public string Code { get; set; }
         private IList<Street> streets;
-        public IList<Street> Streets 
+        public virtual IList<Street> Streets 
         {
             get => lazyLoader.Load(this, ref streets);
             set => streets = value;
