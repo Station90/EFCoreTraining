@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace EFCoreTraining
 {
@@ -23,8 +24,23 @@ namespace EFCoreTraining
         static void Main(string[] args)
         {
             //InsertFromFile();
-            Insert();
+            //Insert();
+            StoredProcedure("32-400");
         }
+
+        private static void StoredProcedure(string ZipCode)
+        {
+            var factory = new ConsoleAppFactory();
+            var context = factory.CreateDbContext();
+            var result = 
+                context.SPResult.FromSqlInterpolated($"GetStreets {ZipCode}");
+
+            foreach(var r in result)
+            {
+                Console.WriteLine($"{r.Name}");
+            }
+        }
+
 
         private static void Insert()
         {
