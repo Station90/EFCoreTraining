@@ -17,6 +17,8 @@ namespace EFCoreTraining
         public DbSet<Street> Streets { get; set; }
         public DbSet<PostalCode> PostalCodes { get; set; }
 
+        public DbSet<InsertProcedureTemplate> InsertProcedureTemplates { get; set; }
+
         public virtual DbSet<StoredProcResult> SPResult { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

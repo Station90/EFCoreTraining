@@ -25,7 +25,20 @@ namespace EFCoreTraining
         {
             //InsertFromFile();
             //Insert();
-            StoredProcedure("32-400");
+            //StoredProcedure("32-400");
+            StoredProcedureInsert();
+        }
+
+        private static void StoredProcedureInsert()
+        {
+            var insert = new InsertProcedureTemplate
+            {
+                InsertName = "Test",
+                InsertNumber = 787
+            };
+            var factory = new ConsoleAppFactory();
+            var context = factory.CreateDbContext();
+            context.Database.ExecuteSqlInterpolated($"InsertProcedure {insert.InsertName}, {insert.InsertNumber}");
         }
 
         private static void StoredProcedure(string ZipCode)
@@ -60,7 +73,7 @@ namespace EFCoreTraining
         {
             Console.WriteLine("Inserting form file");
             List<GeoJson> items = new List<GeoJson>();
-            using (StreamReader r = new StreamReader("C:\\pl_malopolskie-addresses-state.json"))
+            using (StreamReader r = new StreamReader("C:\\pl_malopolskie-addresses-state.geojson"))
             {
                 string json;
                 while ((json = r.ReadLine()) != null)
