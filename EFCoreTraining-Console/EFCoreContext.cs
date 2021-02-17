@@ -20,6 +20,7 @@ namespace EFCoreTraining
         public DbSet<InsertProcedureTemplate> InsertProcedureTemplates { get; set; }
 
         public virtual DbSet<StoredProcResult> SPResult { get; set; }
+        public virtual DbSet<FUNCResult> FUNCResult { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

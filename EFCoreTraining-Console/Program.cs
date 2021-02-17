@@ -26,7 +26,21 @@ namespace EFCoreTraining
             //InsertFromFile();
             //Insert();
             //StoredProcedure("32-400");
-            StoredProcedureInsert();
+            //StoredProcedureInsert();
+            Function("32-400");
+        }
+
+        private static void Function(string ZipCode)
+        {
+            var factory = new ConsoleAppFactory();
+            var context = factory.CreateDbContext();
+            var result = 
+                context.FUNCResult.FromSqlRaw($"select * from TestFunction(\'{ZipCode}\')");
+
+            foreach(var r in result)
+            {
+                Console.WriteLine($"{r.Id}");
+            }
         }
 
         private static void StoredProcedureInsert()
